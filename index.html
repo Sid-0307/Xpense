@@ -355,7 +355,7 @@
           Track your UPI expenses automatically
         </p>
         <a
-          href="https://sid-0307.github.io/Xpense/app-release.apk"
+          href="YOUR_APK_DOWNLOAD_LINK_HERE"
           class="download-btn"
           id="downloadBtn"
           onclick="incrementDownload()"
@@ -496,25 +496,40 @@
     </div>
 
     <script>
-      // Download counter using memory storage
-      let downloadCount = parseInt(
-        localStorage.getItem("xpenseDownloads") || "0"
-      );
+      // Global download counter using Google Apps Script
+      const SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbx_tbOQj7g4KmnBr9j8DNvKVxTNqIirK44GtjwP4b-Z7r6Wt8ncV_JLmMeV4H8LJjjf3Q/exec";
 
-      function updateCounter() {
-        document.getElementById(
-          "downloadCounter"
-        ).textContent = `${downloadCount.toLocaleString()} downloads`;
+      async function fetchDownloadCount() {
+        try {
+          const response = await fetch(SCRIPT_URL + "?action=get");
+          const data = await response.json();
+          document.getElementById(
+            "downloadCounter"
+          ).textContent = `${data.count.toLocaleString()} downloads`;
+        } catch (error) {
+          console.error("Error fetching count:", error);
+          document.getElementById("downloadCounter").textContent =
+            "Download count unavailable";
+        }
       }
 
-      function incrementDownload() {
-        downloadCount++;
-        localStorage.setItem("xpenseDownloads", downloadCount);
-        updateCounter();
+      async function incrementDownload() {
+        try {
+          const response = await fetch(SCRIPT_URL + "?action=increment", {
+            method: "GET",
+          });
+          const data = await response.json();
+          document.getElementById(
+            "downloadCounter"
+          ).textContent = `${data.count.toLocaleString()} downloads`;
+        } catch (error) {
+          console.error("Error incrementing count:", error);
+        }
       }
 
       // Initialize counter on page load
-      updateCounter();
+      fetchDownloadCount();
     </script>
   </body>
 </html>

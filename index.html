@@ -1,468 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xpense - Your Money's Mirror</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
-            color: #ffffff;
-            min-height: 100vh;
-        }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
+        color: #ffffff;
+        min-height: 100vh;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-        }
+      header {
+        text-align: center;
+        padding: 60px 20px 40px;
+      }
 
+      .logo {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .logo-x {
+        color: #a78bfa;
+      }
+
+      .logo-pense {
+        color: #ffffff;
+      }
+
+      .tagline {
+        font-size: 1.5rem;
+        color: #c4b5fd;
+        margin-bottom: 40px;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .phone-mockup {
+        background: linear-gradient(145deg, #2d1b4e, #1a0b2e);
+        border-radius: 40px;
+        padding: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        max-width: 350px;
+        width: 100%;
+      }
+
+      .phone-screen {
+        background: #1a0b2e;
+        border-radius: 30px;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .screen-content h2 {
+        color: #a78bfa;
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      .bank-selector {
+        background: rgba(167, 139, 250, 0.1);
+        border: 1px solid rgba(167, 139, 250, 0.3);
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 20px;
+        color: #ffffff;
+      }
+
+      .read-btn {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 18px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        width: 100%;
+        margin-bottom: 30px;
+        cursor: pointer;
+      }
+
+      .info-card {
+        background: rgba(167, 139, 250, 0.2);
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+      }
+
+      .info-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(167, 139, 250, 0.3);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+      }
+
+      .download-section {
+        text-align: center;
+        margin: 60px 0;
+        padding: 40px 20px;
+        background: rgba(167, 139, 250, 0.1);
+        border-radius: 20px;
+      }
+
+      .download-btn {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        color: white;
+        text-decoration: none;
+        padding: 20px 60px;
+        border-radius: 50px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        display: inline-block;
+        margin: 20px 0;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+      }
+
+      .download-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(167, 139, 250, 0.6);
+      }
+
+      .download-count {
+        font-size: 1.1rem;
+        color: #c4b5fd;
+        margin-top: 15px;
+      }
+
+      .version-info {
+        color: #a78bfa;
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin: 60px 0;
+      }
+
+      .feature-card {
+        background: rgba(167, 139, 250, 0.1);
+        border: 1px solid rgba(167, 139, 250, 0.2);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        background: rgba(167, 139, 250, 0.15);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+
+      .feature-card h3 {
+        color: #a78bfa;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+
+      .feature-card p {
+        color: #c4b5fd;
+        line-height: 1.6;
+      }
+
+      .installation {
+        background: rgba(167, 139, 250, 0.1);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 60px 0;
+      }
+
+      .installation h2 {
+        color: #a78bfa;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .step {
+        display: flex;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .step-number {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .step-content {
+        flex: 1;
+      }
+
+      .step-content h3 {
+        color: #c4b5fd;
+        margin-bottom: 8px;
+      }
+
+      .step-content p {
+        color: #a78bfa;
+        line-height: 1.6;
+      }
+
+      .privacy {
+        background: rgba(139, 92, 246, 0.15);
+        border: 2px solid rgba(167, 139, 250, 0.3);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 60px 0;
+        text-align: center;
+      }
+
+      .privacy h2 {
+        color: #a78bfa;
+        margin-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      .privacy p {
+        color: #c4b5fd;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: #a78bfa;
+        border-top: 1px solid rgba(167, 139, 250, 0.2);
+        margin-top: 60px;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: #a78bfa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #c4b5fd;
+      }
+
+      @media (max-width: 768px) {
         .logo {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .logo-x {
-            color: #a78bfa;
-        }
-
-        .logo-pense {
-            color: #ffffff;
+          font-size: 2.5rem;
         }
 
         .tagline {
-            font-size: 1.5rem;
-            color: #c4b5fd;
-            margin-bottom: 40px;
-        }
-
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .phone-mockup {
-            background: linear-gradient(145deg, #2d1b4e, #1a0b2e);
-            border-radius: 40px;
-            padding: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            max-width: 350px;
-            width: 100%;
-        }
-
-        .phone-screen {
-            background: #1a0b2e;
-            border-radius: 30px;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .screen-content h2 {
-            color: #a78bfa;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-
-        .bank-selector {
-            background: rgba(167, 139, 250, 0.1);
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .read-btn {
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 18px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            width: 100%;
-            margin-bottom: 30px;
-            cursor: pointer;
-        }
-
-        .info-card {
-            background: rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .info-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(167, 139, 250, 0.3);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-
-        .download-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 40px 20px;
-            background: rgba(167, 139, 250, 0.1);
-            border-radius: 20px;
+          font-size: 1.2rem;
         }
 
         .download-btn {
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            color: white;
-            text-decoration: none;
-            padding: 20px 60px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            display: inline-block;
-            margin: 20px 0;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(167, 139, 250, 0.6);
-        }
-
-        .download-count {
-            font-size: 1.1rem;
-            color: #c4b5fd;
-            margin-top: 15px;
-        }
-
-        .version-info {
-            color: #a78bfa;
-            margin-top: 10px;
-            font-size: 0.9rem;
+          padding: 18px 40px;
+          font-size: 1.1rem;
         }
 
         .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+          grid-template-columns: 1fr;
         }
-
-        .feature-card {
-            background: rgba(167, 139, 250, 0.1);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(167, 139, 250, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            color: #a78bfa;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-
-        .feature-card p {
-            color: #c4b5fd;
-            line-height: 1.6;
-        }
-
-        .installation {
-            background: rgba(167, 139, 250, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .installation h2 {
-            color: #a78bfa;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            text-align: center;
-        }
-
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .step {
-            display: flex;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .step-number {
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .step-content {
-            flex: 1;
-        }
-
-        .step-content h3 {
-            color: #c4b5fd;
-            margin-bottom: 8px;
-        }
-
-        .step-content p {
-            color: #a78bfa;
-            line-height: 1.6;
-        }
-
-        .privacy {
-            background: rgba(139, 92, 246, 0.15);
-            border: 2px solid rgba(167, 139, 250, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .privacy h2 {
-            color: #a78bfa;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .privacy p {
-            color: #c4b5fd;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #a78bfa;
-            border-top: 1px solid rgba(167, 139, 250, 0.2);
-            margin-top: 60px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #a78bfa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #c4b5fd;
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .download-btn {
-                padding: 18px 40px;
-                font-size: 1.1rem;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <div class="logo">
-                <span class="logo-x">X</span><span class="logo-pense">pense</span>
-            </div>
-            <div class="tagline">Your money's mirror</div>
-        </header>
-
-        <div class="hero">
-            <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="screen-content">
-                        <h2>Select your bank</h2>
-                        <div class="bank-selector">
-                            🏦 Axis Bank
-                        </div>
-                        <button class="read-btn">Read My Transactions</button>
-                        <div class="info-card">
-                            <div class="info-icon">💬</div>
-                            <p style="color: #c4b5fd; line-height: 1.6;">This app reads your SMS messages to analyze UPI transactions.</p>
-                            <p style="color: #a78bfa; margin-top: 10px; font-size: 0.9rem;">Tap the button above to get started.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <header>
+        <div class="logo">
+          <span class="logo-x">X</span><span class="logo-pense">pense</span>
         </div>
+        <div class="tagline">Your money's mirror</div>
+      </header>
 
-        <div class="download-section">
-            <h2 style="color: #a78bfa; margin-bottom: 20px; font-size: 2rem;">Download Xpense</h2>
-            <p style="color: #c4b5fd; margin-bottom: 20px; font-size: 1.1rem;">Track your UPI expenses automatically</p>
-            <a href="YOUR_APK_DOWNLOAD_LINK_HERE" class="download-btn" id="downloadBtn" onclick="incrementDownload()">
-                📥 Download APK
-            </a>
-            <div class="download-count">
-                <span id="downloadCounter">Loading downloads...</span>
+      <div class="hero">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="screen-content">
+              <h2>Select your bank</h2>
+              <div class="bank-selector">🏦 Axis Bank</div>
+              <button class="read-btn">Read My Transactions</button>
+              <div class="info-card">
+                <div class="info-icon">💬</div>
+                <p style="color: #c4b5fd; line-height: 1.6">
+                  This app reads your SMS messages to analyze UPI transactions.
+                </p>
+                <p style="color: #a78bfa; margin-top: 10px; font-size: 0.9rem">
+                  Tap the button above to get started.
+                </p>
+              </div>
             </div>
-            <div class="version-info">Version 1.0.0 • 15 MB • Android 9.0+</div>
+          </div>
         </div>
+      </div>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Auto Categorization</h3>
-                <p>Automatically categorizes your UPI transactions from SMS messages into meaningful expense categories.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏦</div>
-                <h3>Multi-Bank Support</h3>
-                <p>Works with all major Indian banks including Axis, HDFC, SBI, ICICI, and more.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy First</h3>
-                <p>All data stays on your device. No cloud storage, no data sharing, complete privacy.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Offline Mode</h3>
-                <p>Works completely offline. No internet required for tracking your expenses.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Insights & Reports</h3>
-                <p>Get detailed spending insights and visual reports of your transaction patterns.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Instantly analyzes thousands of transactions in seconds with smart SMS parsing.</p>
-            </div>
+      <div class="download-section">
+        <h2 style="color: #a78bfa; margin-bottom: 20px; font-size: 2rem">
+          Download Xpense
+        </h2>
+        <p style="color: #c4b5fd; margin-bottom: 20px; font-size: 1.1rem">
+          Track your UPI expenses automatically
+        </p>
+        <a
+          href="https://sid-0307.github.io/Xpense/app-release.apk"
+          class="download-btn"
+          id="downloadBtn"
+          onclick="incrementDownload()"
+        >
+          📥 Download APK
+        </a>
+        <div class="download-count">
+          <span id="downloadCounter">Loading downloads...</span>
         </div>
+        <div class="version-info">Version 1.0.0 • 15 MB • Android 9.0+</div>
+      </div>
 
-        <div class="installation">
-            <h2>Installation Guide</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Enable Unknown Sources</h3>
-                        <p>Go to Settings → Security → Install unknown apps → Select your browser → Allow from this source</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Download APK</h3>
-                        <p>Click the download button above to download the Xpense APK file to your device</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Install App</h3>
-                        <p>Open the downloaded APK file and tap "Install" when prompted</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Grant SMS Permission</h3>
-                        <p>When you first open the app, grant SMS read permission to analyze your UPI transactions</p>
-                    </div>
-                </div>
-            </div>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Auto Categorization</h3>
+          <p>
+            Automatically categorizes your UPI transactions from SMS messages
+            into meaningful expense categories.
+          </p>
         </div>
-
-        <div class="privacy">
-            <h2>🔒 Your Privacy Matters</h2>
-            <p>
-                Xpense reads your SMS messages solely to identify and categorize UPI transaction messages. 
-                <strong>All data is processed and stored locally on your device.</strong> We never upload, share, 
-                or transmit your SMS data to any server. Your financial information stays completely private and 
-                under your control. The READ_SMS permission is used exclusively for analyzing banking transaction 
-                notifications from your registered banks.
-            </p>
+        <div class="feature-card">
+          <div class="feature-icon">🏦</div>
+          <h3>Multi-Bank Support</h3>
+          <p>
+            Works with all major Indian banks including Axis, HDFC, SBI, ICICI,
+            and more.
+          </p>
         </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>
+            All data stays on your device. No cloud storage, no data sharing,
+            complete privacy.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Offline Mode</h3>
+          <p>
+            Works completely offline. No internet required for tracking your
+            expenses.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Insights & Reports</h3>
+          <p>
+            Get detailed spending insights and visual reports of your
+            transaction patterns.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>
+            Instantly analyzes thousands of transactions in seconds with smart
+            SMS parsing.
+          </p>
+        </div>
+      </div>
 
-        <footer>
-            <div class="footer-links">
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-                <a href="mailto:support@xpense.app">Contact Support</a>
-                <a href="https://github.com/yourusername/xpense" target="_blank">GitHub</a>
+      <div class="installation">
+        <h2>Installation Guide</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Enable Unknown Sources</h3>
+              <p>
+                Go to Settings → Security → Install unknown apps → Select your
+                browser → Allow from this source
+              </p>
             </div>
-            <p>© 2024 Xpense. Made with 💜 for privacy-conscious users.</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Not available on Google Play Store due to SMS permission restrictions.</p>
-        </footer>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Download APK</h3>
+              <p>
+                Click the download button above to download the Xpense APK file
+                to your device
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Install App</h3>
+              <p>
+                Open the downloaded APK file and tap "Install" when prompted
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Grant SMS Permission</h3>
+              <p>
+                When you first open the app, grant SMS read permission to
+                analyze your UPI transactions
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy">
+        <h2>🔒 Your Privacy Matters</h2>
+        <p>
+          Xpense reads your SMS messages solely to identify and categorize UPI
+          transaction messages.
+          <strong
+            >All data is processed and stored locally on your device.</strong
+          >
+          We never upload, share, or transmit your SMS data to any server. Your
+          financial information stays completely private and under your control.
+          The READ_SMS permission is used exclusively for analyzing banking
+          transaction notifications from your registered banks.
+        </p>
+      </div>
+
+      <footer>
+        <div class="footer-links">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+          <a href="mailto:support@xpense.app">Contact Support</a>
+          <a href="https://github.com/yourusername/xpense" target="_blank"
+            >GitHub</a
+          >
+        </div>
+        <p>© 2024 Xpense. Made with 💜 for privacy-conscious users.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem">
+          Not available on Google Play Store due to SMS permission restrictions.
+        </p>
+      </footer>
     </div>
 
     <script>
-        // Download counter using memory storage
-        let downloadCount = parseInt(localStorage.getItem('xpenseDownloads') || '0');
+      // Download counter using memory storage
+      let downloadCount = parseInt(
+        localStorage.getItem("xpenseDownloads") || "0"
+      );
 
-        function updateCounter() {
-            document.getElementById('downloadCounter').textContent = 
-                `${downloadCount.toLocaleString()} downloads`;
-        }
+      function updateCounter() {
+        document.getElementById(
+          "downloadCounter"
+        ).textContent = `${downloadCount.toLocaleString()} downloads`;
+      }
 
-        function incrementDownload() {
-            downloadCount++;
-            localStorage.setItem('xpenseDownloads', downloadCount);
-            updateCounter();
-        }
-
-        // Initialize counter on page load
+      function incrementDownload() {
+        downloadCount++;
+        localStorage.setItem("xpenseDownloads", downloadCount);
         updateCounter();
+      }
+
+      // Initialize counter on page load
+      updateCounter();
     </script>
-</body>
+  </body>
 </html>
